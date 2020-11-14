@@ -1,16 +1,17 @@
 package com.example.androiduserexcercise
 
+
+import com.example.androiduserexcercise.model.ResponseData
+
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androiduserexcercise.adapter.AdapterData
 import com.example.androiduserexcercise.databinding.ActivityMainBinding
-import com.example.androiduserexcercise.model.DataModel
 import com.example.androiduserexcercise.util.Utildata
 import retrofit2.Response
 import retrofit2.Call
 
-import java.net.CacheResponse
 import retrofit2.Callback
 
 class MainActivity : AppCompatActivity() {
@@ -24,14 +25,14 @@ class MainActivity : AppCompatActivity() {
 
         binding.rvProduct.adapter = adapter
 
-        Utildata.service.getAllProduct().enqueue(object : Callback<List<DataModel>>{
+        Utildata.service.getAllProduct().enqueue(object : Callback<ResponseData>{
             override fun onResponse(
-                call: Call<List<DataModel>>,
-                response: Response<List<DataModel>>
+                call: Call<ResponseData>,
+                response: Response<ResponseData>
 
             ){
                 if (response.isSuccessful){
-                    response.body()?.let { adapter.setData(it) }
+                    response.body()?.let { adapter.setData(it.data) }
                     Toast.makeText(this@MainActivity, "berhasil", Toast.LENGTH_SHORT)
                         .show()
                 } else {
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<List<DataModel>>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                 t.printStackTrace()
 
                 Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_SHORT).show()

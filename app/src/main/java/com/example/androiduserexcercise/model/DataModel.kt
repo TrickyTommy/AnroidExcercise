@@ -10,10 +10,8 @@ data class DataModel(
 	val first_Name: String,
 	@SerializedName("last_name")
 	val last_Name: String,
-
 	@SerializedName("email")
 	val email: String,
-
 	@SerializedName("avatar")
 	val avatar: String
 

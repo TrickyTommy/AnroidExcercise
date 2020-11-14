@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.androiduserexcercise.databinding.DataAvatarBinding
 import com.example.androiduserexcercise.model.DataModel
+import com.example.androiduserexcercise.model.ResponseData
 
 class AdapterData (private val context: Context) : RecyclerView.Adapter<AdapterData.ViewHolder>(){
 
@@ -27,9 +28,6 @@ class AdapterData (private val context: Context) : RecyclerView.Adapter<AdapterD
             Glide.with(binding.root).load(letak.avatar).into(binding.ivAvatar)
         }
     }
-
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             return ViewHolder(
                 DataAvatarBinding.inflate(
@@ -39,7 +37,6 @@ class AdapterData (private val context: Context) : RecyclerView.Adapter<AdapterD
                 )
             )
         }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binData(datas [position])    }
 
